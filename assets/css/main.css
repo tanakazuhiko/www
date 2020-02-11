@@ -1,0 +1,514 @@
+@charset "utf-8";
+
+body {
+  font-family: "Abril Fatface";
+  font-size: 100%;
+  line-height: 160%;
+  color: #000;
+  text-align: center;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+#container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.stageBase {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.stageBase p {
+  font-size: 16rem;
+  font-style: italic;
+  padding-top: 60px;
+  z-index: 3;
+}
+
+.stageSlide {
+  position: relative;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.stageSlide .slideWrap {
+  top: 0;
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.stageSlide .slideWrap:before,
+.stageSlide .slideWrap:after {
+  content: " ";
+  display: table;
+}
+
+.stageSlide .slideWrap:after {
+  clear: both;
+}
+
+.stageSlide .slideWrap {
+  *zoom: 1;
+}
+
+.stageSlide .slidePanel {
+  float: left;
+  overflow: hidden;
+}
+
+.stageSlide .sdPrev,
+.stageSlide .sdNext {
+  margin-top: -25px;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  z-index: 99;
+}
+
+.stageSlide .sdPrev {
+  left: 80px;
+  background: transparent url(../img/slide_prev.png) no-repeat left top;
+}
+
+.stageSlide .sdNext {
+  right: 80px;
+  background: transparent url(../img/slide_next.png) no-repeat left top;
+}
+
+.stageSlide .slideNav {
+  bottom: 70px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  text-align: center;
+  position: absolute;
+  z-index: 98;
+}
+
+.stageSlide .slideNav a {
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
+  background: transparent url(../img/nav.png) no-repeat center center;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.stageSlide .slideNav a.pnActive {
+  background: transparent url(../img/nav_acv.png) no-repeat center center;
+}
+
+#pageNav {
+  top: 0;
+  right: 25px;
+  width: 40px;
+  text-align: center;
+  position: fixed;
+  z-index: 2;
+}
+
+#pageNav ul {
+  display: block;
+  line-height: 1.2;
+}
+
+#pageNav ul li {
+  display: block;
+  overflow: hidden;
+}
+
+#pageNav ul li a {
+  display: block;
+  text-decoration: none;
+  font-size: 0.6rem;
+  color: grey;
+}
+
+#pageNav ul li a.large {
+  font-size: 1.1rem;
+}
+
+#pageNav ul li.activeStage a {
+  color: red;
+  text-decoration: none;
+}
+
+#pageDown {
+  bottom: 0;
+  right: 16px;
+  height: 40px;
+  text-align: left;
+  position: fixed;
+  overflow: hidden;
+}
+
+#pageDown a {
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  display: block;
+  color: grey;
+  text-decoration: none;
+}
+
+#pageUp {
+  top: 20px;
+  right: 16px;
+  height: 40px;
+  text-align: left;
+  position: fixed;
+  overflow: hidden;
+  z-index: 3;
+}
+
+#pageUp a {
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  display: block;
+  color: grey;
+  text-decoration: none;
+}
+
+.vertical-line {
+  background: #353232;
+  height: 100%;
+  width: 1px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.large {
+  font-size: 1.2rem;
+}
+
+.tree {
+  cursor: default;
+  margin-top: -80px;
+}
+
+.tree.top {
+  margin-top: -12px;
+}
+
+.tree ul {
+  width: 100%;
+  padding-top: 20px;
+  position: relative;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tree.below ul {
+  padding-top: 0px;
+}
+
+.tree li {
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.tree li::before,
+.tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 1000px;
+  z-index: -1;
+}
+
+.tree.below li::before {
+  top: -30px;
+}
+
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without  
+any siblings*/
+.tree li:only-child::after,
+.tree li:only-child::before {
+  display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child {
+  padding-top: 0;
+}
+
+/*Remove left connector from first child and  
+right connector from last child*/
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+}
+
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 1000px;
+}
+
+.tree ul ul.last::before {
+  height: 1000px;
+}
+
+.tree li a {
+  text-decoration: none;
+  color: #666;
+  display: inline-block;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  line-height: 1.5;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+/* .tree li a:hover,
+.tree li a:hover + ul li a { */
+.frame:hover {
+  background: #c8e4f8;
+  color: #000;
+  border: 1px solid #94a0b4;
+}
+
+/*Connector styles on hover*/
+.tree li a:hover + ul li::after,
+.tree li a:hover + ul li::before,
+.tree li a:hover + ul::before,
+.tree li a:hover + ul ul::before {
+  border-color: #94a0b4;
+}
+
+.frame {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 100px;
+  background-color: white;
+  z-index: 999;
+}
+
+.root {
+  margin: 70px auto 0;
+  font-size: 4rem;
+  line-height: 1;
+  width: 570px;
+}
+
+.child {
+  margin-top: 20px;
+  font-size: 3rem;
+  padding: 20px;
+  background-color: white;
+  z-index: 999;
+  width: 200px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.child.center {
+  width: 300px;
+}
+
+.child.below {
+  margin-top: 138px;
+}
+
+.child.below2 {
+  margin-top: 40px;
+}
+
+.date {
+  font-size: 2rem;
+}
+
+.contents {
+  font-size: 1.2rem;
+  /* width: 300px; */
+}
+
+.contents.large {
+  font-size: 2rem;
+}
+
+.parent {
+  display: flex;
+  justify-content: space-around;
+}
+
+/***************************/
+
+#stage1990 {
+  background: #e3f2fd;
+}
+#stage1991 {
+  background: #bbdefb;
+}
+#stage1992 {
+  background: #90caf9;
+}
+#stage1993 {
+  background: #64b5f6;
+}
+#stage1994 {
+  background: #42a5f5;
+}
+#stage1995 {
+  background: #2196f3;
+}
+#stage1996 {
+  background: #1e88e5;
+}
+#stage1997 {
+  background: #1976d2;
+}
+#stage1998 {
+  background: #1565c0;
+}
+#stage1999 {
+  background: #0d47a1;
+}
+#stage2000 {
+  background: #f9fbe7;
+}
+#stage2001 {
+  background: #b3e5fc;
+}
+#stage2002 {
+  background: #81d4fa;
+}
+#stage2003 {
+  background: #4fc3f7;
+}
+#stage2004 {
+  background: #29b6f6;
+}
+#stage2005 {
+  background: #03a9f4;
+}
+#stage2006 {
+  background: #039be5;
+}
+#stage2007 {
+  background: #0288d1;
+}
+#stage2008 {
+  background: #0277bd;
+}
+#stage2009 {
+  background: #01579b;
+}
+#stage2010 {
+  background: #e0f7fa;
+}
+#stage2011 {
+  background: #b2ebf2;
+}
+#stage2012 {
+  background: #80deea;
+}
+#stage2013 {
+  background: #4dd0e1;
+}
+#stage2014 {
+  background: #26c6da;
+}
+#stage2015 {
+  background: #00bcd4;
+}
+#stage2016 {
+  background: #00acc1;
+}
+#stage2017 {
+  background: #0097a7;
+}
+#stage2018 {
+  background: #00838f;
+}
+#stage2019 {
+  background: #006064;
+}
+#stage2020 {
+  background: #e0f2f1;
+}
+#stage2021 {
+  background: #b2dfdb;
+}
+#stage2022 {
+  background: #80cbc4;
+}
+#stage2023 {
+  background: #4db6ac;
+}
+#stage2024 {
+  background: #26a69a;
+}
+#stage2025 {
+  background: #009688;
+}
+#stage2026 {
+  background: #00897b;
+}
+#stage2027 {
+  background: #00796b;
+}
+#stage2028 {
+  background: #00695c;
+}
+#stage2029 {
+  background: #004d40;
+}
