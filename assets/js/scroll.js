@@ -55,7 +55,8 @@ $(function() {
         coreNav.each(function() {
           var navHeight = $(this).height();
           $(this).css({
-            top: (wdHeight - navHeight) / 2
+            // top: (wdHeight - navHeight) / 2
+            top: 60
           });
         });
       })

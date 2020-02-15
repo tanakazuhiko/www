@@ -12,6 +12,15 @@ body {
   visibility: hidden;
 }
 
+h1 {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+  opacity: 0.6;
+  color: red;
+}
+
 #container {
   top: 0;
   left: 0;
@@ -30,7 +39,8 @@ body {
   font-size: 16rem;
   font-style: italic;
   padding-top: 60px;
-  z-index: 3;
+  z-index: 2;
+  position: relative;
 }
 
 .stageSlide {
@@ -46,8 +56,7 @@ body {
   overflow: hidden;
 }
 
-.stageSlide .slideWrap:before,
-.stageSlide .slideWrap:after {
+.stageSlide .slideWrap:before, .stageSlide .slideWrap:after {
   content: " ";
   display: table;
 }
@@ -65,8 +74,7 @@ body {
   overflow: hidden;
 }
 
-.stageSlide .sdPrev,
-.stageSlide .sdNext {
+.stageSlide .sdPrev, .stageSlide .sdNext {
   margin-top: -25px;
   top: 50%;
   width: 50px;
@@ -111,7 +119,7 @@ body {
 
 #pageNav {
   top: 0;
-  right: 25px;
+  right: 80px;
   width: 40px;
   text-align: center;
   position: fixed;
@@ -211,7 +219,6 @@ body {
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
-
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -221,18 +228,162 @@ body {
   padding-top: 0px;
 }
 
+li {
+  position: relative;
+}
+
+.ml1 {
+  position: absolute;
+  top: 156px;
+}
+
+.ml3 {
+  position: absolute;
+  top: 200px;
+}
+
+.ml5 {
+  position: absolute;
+  top: 200px;
+}
+
+.ml6 {
+  position: absolute;
+  top: 280px;
+}
+
+.ml10 {
+  position: absolute;
+  top: 404px;
+}
+
+.ml12 {
+  position: absolute;
+  top: 528px;
+}
+
+.mr1 {
+  position: absolute;
+  top: 156px;
+  right: 20px;
+}
+
+.mr6 {
+  position: absolute;
+  top: 280px;
+  right: 20px;
+}
+
+.mr10 {
+  position: absolute;
+  top: 404px;
+  right: 20px;
+}
+
+.mr12 {
+  position: absolute;
+  top: 528px;
+  right: 20px;
+}
+
+.m1 {
+  position: absolute;
+  top: 156px;
+  left: 10px;
+}
+
+.m3 {
+  position: absolute;
+  top: 200px;
+  left: 10px;
+}
+
+.m6 {
+  position: absolute;
+  top: 280px;
+  left: 10px;
+}
+
+.m11 {
+  position: absolute;
+  top: 404px;
+  left: 10px;
+}
+
+.m12 {
+  position: absolute;
+  top: 528px;
+  left: 10px;
+}
+
+.copy {
+  margin-top: 100px;
+  font-size: 12rem;
+  line-height: 12rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  color: dimgray;
+}
+
+.italic {
+  font-style: italic;
+}
+
 .tree li {
   text-align: center;
   list-style-type: none;
   position: relative;
-  padding: 20px 5px 0 5px;
+  /* padding: 20px 5px 0 5px; */
+  padding: 20px 0px 0 0px;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
 }
 
-.tree li::before,
-.tree li::after {
+.tree.top li {
+  width: auto;
+}
+
+.tree li:nth-child(2) {
+  width: 300px;
+}
+
+.tree li:nth-child(1), .tree li:nth-child(3) {
+  width: calc((100% - 300px) / 2);
+}
+
+.tree li:nth-child(1) {
+  background: linear-gradient(to top, #C1C1C1, #C1C1C1) repeat-y center/1px;
+  background-position: 284px center;
+  text-align: right;
+}
+
+.tree li:nth-child(2) {
+  background: linear-gradient(to top, #C1C1C1, #C1C1C1) repeat-y center/1px;
+  height: 1000px;
+  z-index: 1;
+}
+
+.tree li:nth-child(3) {
+  background: linear-gradient(to top, #C1C1C1, #C1C1C1) repeat-y center/1px;
+  background-position: 148px center;
+  text-align: left;
+}
+
+.tree.top li:nth-child(1) {
+  text-align: center;
+}
+
+.tree.top li, .tree.top li:nth-child(1), .tree.top li:nth-child(2), .tree.top li:nth-child(3) {
+  width: auto;
+  background: center;
+}
+
+.tree li::before, .tree li::after {
   content: "";
   position: absolute;
   top: 0;
@@ -253,26 +404,32 @@ body {
   border-left: 1px solid #ccc;
 }
 
-/*We need to remove left-right connectors from elements without  
+
+/*We need to remove left-right connectors from elements without
 any siblings*/
-.tree li:only-child::after,
-.tree li:only-child::before {
+
+.tree li:only-child::after, .tree li:only-child::before {
   display: none;
 }
 
+
 /*Remove space from the top of single children*/
+
 .tree li:only-child {
   padding-top: 0;
 }
 
-/*Remove left connector from first child and  
+
+/*Remove left connector from first child and
 right connector from last child*/
-.tree li:first-child::before,
-.tree li:last-child::after {
+
+.tree li:first-child::before, .tree li:last-child::after {
   border: 0 none;
 }
 
+
 /*Adding back the vertical connector to the last nodes*/
+
 .tree li:last-child::before {
   border-right: 1px solid #ccc;
   border-radius: 0 5px 0 0;
@@ -286,7 +443,9 @@ right connector from last child*/
   -moz-border-radius: 5px 0 0 0;
 }
 
+
 /*Time to add downward connectors from parents*/
+
 .tree ul ul::before {
   content: "";
   position: absolute;
@@ -314,54 +473,70 @@ right connector from last child*/
   line-height: 1.5;
 }
 
+
 /*Time for some hover effects*/
+
+
 /*We will apply the hover effect the the lineage of the element also*/
+
+
 /* .tree li a:hover,
 .tree li a:hover + ul li a { */
+
 .frame:hover {
   background: #c8e4f8;
   color: #000;
   border: 1px solid #94a0b4;
 }
 
+a .frame:hover {
+  background-color: #FFFACD;
+}
+
+
 /*Connector styles on hover*/
-.tree li a:hover + ul li::after,
-.tree li a:hover + ul li::before,
-.tree li a:hover + ul::before,
-.tree li a:hover + ul ul::before {
+
+.tree li a:hover+ul li::after, .tree li a:hover+ul li::before, .tree li a:hover+ul::before, .tree li a:hover+ul ul::before {
   border-color: #94a0b4;
 }
 
 .frame {
   border: 1px solid #ccc;
-  padding: 15px;
-  margin-top: 100px;
+  padding: 10px;
   background-color: white;
   z-index: 999;
-}
-
-.root {
-  margin: 70px auto 0;
-  font-size: 4rem;
-  line-height: 1;
-  width: 570px;
-}
-
-.child {
-  margin-top: 20px;
-  font-size: 3rem;
-  padding: 20px;
-  background-color: white;
-  z-index: 999;
-  width: 200px;
+  width: 256px;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.frame.top {
+  margin-left: 10px;
+}
+
+.root {
+  margin: 80px auto 0;
+  font-size: 4rem;
+  line-height: 1;
+  width: 400px;
+  height: 100px;
+}
+
+.child {
+  margin: 10px;
+  font-size: 3rem;
+  padding: 10px;
+  background-color: white;
+  z-index: 999;
 }
 
 .child.center {
   width: 300px;
+  height: 110px;
 }
 
 .child.below {
@@ -374,10 +549,16 @@ right connector from last child*/
 
 .date {
   font-size: 2rem;
+  width: 100%;
+}
+
+.date.small {
+  font-size: 1.6rem;
 }
 
 .contents {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+  width: 100%;
   /* width: 300px; */
 }
 
@@ -385,130 +566,184 @@ right connector from last child*/
   font-size: 2rem;
 }
 
+.contents.small {
+  font-size: 1.4rem;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-style: italic;
+  width: 100%;
+}
+
+.name.small {
+  font-size: 1.2rem;
+}
+
 .parent {
   display: flex;
   justify-content: space-around;
 }
+
 
 /***************************/
 
 #stage1990 {
   background: #e3f2fd;
 }
+
 #stage1991 {
   background: #bbdefb;
 }
+
 #stage1992 {
   background: #90caf9;
 }
+
 #stage1993 {
   background: #64b5f6;
 }
+
 #stage1994 {
   background: #42a5f5;
 }
+
 #stage1995 {
   background: #2196f3;
 }
+
 #stage1996 {
   background: #1e88e5;
 }
+
 #stage1997 {
   background: #1976d2;
 }
+
 #stage1998 {
   background: #1565c0;
 }
+
 #stage1999 {
   background: #0d47a1;
 }
+
 #stage2000 {
-  background: #f9fbe7;
+  background: #c1ebff;
 }
+
 #stage2001 {
   background: #b3e5fc;
 }
+
 #stage2002 {
   background: #81d4fa;
 }
+
 #stage2003 {
   background: #4fc3f7;
 }
+
 #stage2004 {
   background: #29b6f6;
 }
+
 #stage2005 {
   background: #03a9f4;
 }
+
 #stage2006 {
   background: #039be5;
 }
+
 #stage2007 {
   background: #0288d1;
 }
+
 #stage2008 {
   background: #0277bd;
 }
+
 #stage2009 {
   background: #01579b;
 }
+
 #stage2010 {
   background: #e0f7fa;
 }
+
 #stage2011 {
   background: #b2ebf2;
 }
+
 #stage2012 {
   background: #80deea;
 }
+
 #stage2013 {
   background: #4dd0e1;
 }
+
 #stage2014 {
   background: #26c6da;
 }
+
 #stage2015 {
   background: #00bcd4;
 }
+
 #stage2016 {
   background: #00acc1;
 }
+
 #stage2017 {
   background: #0097a7;
 }
+
 #stage2018 {
   background: #00838f;
 }
+
 #stage2019 {
   background: #006064;
 }
+
 #stage2020 {
   background: #e0f2f1;
 }
+
 #stage2021 {
   background: #b2dfdb;
 }
+
 #stage2022 {
   background: #80cbc4;
 }
+
 #stage2023 {
   background: #4db6ac;
 }
+
 #stage2024 {
   background: #26a69a;
 }
+
 #stage2025 {
   background: #009688;
 }
+
 #stage2026 {
   background: #00897b;
 }
+
 #stage2027 {
   background: #00796b;
 }
+
 #stage2028 {
   background: #00695c;
 }
+
 #stage2029 {
   background: #004d40;
 }
