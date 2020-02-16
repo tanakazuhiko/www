@@ -1,98 +1,98 @@
 $(function() {
   var setWrap = $("#container"),
-    setBase = $(".stageBase"),
-    scrollSpeed = 800, //1000,
-    scrollEasing = "swing",
-    slideSpeed = 200, //500,
-    slideEasing = "linear",
-    downBtn = "show", // 'show' or 'hide'
-    urlHash = "on", // 'on' or 'off'
-    setHash = "!page";
+  setBase = $(".stageBase"),
+  scrollSpeed = 800, //1000,
+  scrollEasing = "swing",
+  slideSpeed = 200, //500,
+  slideEasing = "linear",
+  downBtn = "show", // 'show' or 'hide'
+  urlHash = "on", // 'on' or 'off'
+  setHash = "!page";
   var url = document.URL,
-    stageSlide = $(".stageSlide");
+  stageSlide = $(".stageSlide");
   setWrap.append('<nav id="pageNav"><ul></ul></nav>');
   setBase.each(function(i) {
     var cl = (i + 1989) % 10 == 0 ? "large" : "";
     $("#pageNav ul").append(
       '<li class="pagePn' +
-        (i + 1) +
-        " " +
-        '"><a href="javascript:void(0);" class="' +
-        cl +
-        '">' +
-        (1989 + i) +
-        "</a></li>"
+      (i + 1) +
+      " " +
+      '"><a href="javascript:void(0);" class="' +
+      cl +
+      '">' +
+      (1989 + i) +
+      "</a></li>"
     );
   });
   var coreNav = $("#pageNav"),
-    setNav = coreNav.find("ul"),
-    navList = setNav.find("li"),
-    navLength = navList.length;
+  setNav = coreNav.find("ul"),
+  navList = setNav.find("li"),
+  navLength = navList.length;
   setNav.find("li:first").addClass("activeStage");
   $("body").attr("data-page", "1");
   $(window).load(function() {
     // StageHeight
     $(window)
-      .resize(function() {
-        var wdHeight = $(window).height();
-        setBase.css({
-          height: wdHeight
+    .resize(function() {
+      var wdHeight = $(window).height();
+      setBase.css({
+        height: wdHeight
+      });
+      var resizeContTop = parseInt(setWrap.css("top"));
+      if (resizeContTop === 0) {
+        setWrap.css({
+          top: "0"
         });
-        var resizeContTop = parseInt(setWrap.css("top"));
-        if (resizeContTop === 0) {
+      } else {
+        var activeStagePos = setNav.find("li.activeStage");
+        activeStagePos.each(function() {
+          var posIndex = navList.index(this);
           setWrap.css({
-            top: "0"
-          });
-        } else {
-          var activeStagePos = setNav.find("li.activeStage");
-          activeStagePos.each(function() {
-            var posIndex = navList.index(this);
-            setWrap.css({
-              top: -(wdHeight * posIndex)
-            });
-          });
-        }
-        coreNav.each(function() {
-          var navHeight = $(this).height();
-          $(this).css({
-            // top: (wdHeight - navHeight) / 2
-            top: 60
+            top: -(wdHeight * posIndex)
           });
         });
-      })
-      .resize();
+      }
+      coreNav.each(function() {
+        var navHeight = $(this).height();
+        $(this).css({
+          // top: (wdHeight - navHeight) / 2
+          top: 60
+        });
+      });
+    })
+    .resize();
     // StageSlide
     stageSlide.each(function() {
       var thisSlide = $(this),
-        chdPanel = thisSlide.find(".slidePanel"),
-        chdPanelLength = chdPanel.length;
+      chdPanel = thisSlide.find(".slidePanel"),
+      chdPanelLength = chdPanel.length;
       chdPanel
-        .eq("0")
-        .addClass("activePanel")
-        .end()
-        .wrapAll('<div class="slideWrap"></div>');
+      .eq("0")
+      .addClass("activePanel")
+      .end()
+      .wrapAll('<div class="slideWrap"></div>');
       thisSlide.append(
         '<a href="javascript:void(0);" class="sdPrev"></a><a href="javascript:void(0);" class="sdNext"></a><div class="slideNav"></div>'
       );
       var thisWrap = thisSlide.find(".slideWrap"),
-        thisPrev = thisSlide.find(".sdPrev"),
-        thisNext = thisSlide.find(".sdNext"),
-        thisPn = thisSlide.find(".slideNav");
+      thisPrev = thisSlide.find(".sdPrev"),
+      thisNext = thisSlide.find(".sdNext"),
+      thisPn = thisSlide.find(".slideNav");
       chdPanel.each(function(i) {
         thisPn.append(
           '<a href="javascript:void(0);" class="slidePn' + (i + 1) + '"></a>'
         );
       });
       var pnPoint = thisPn.find("a"),
-        pnFirst = thisPn.find("a:first"),
-        pnLast = thisPn.find("a:last"),
-        pnCount = thisPn.find("a").length;
+      pnFirst = thisPn.find("a:first"),
+      pnLast = thisPn.find("a:last"),
+      pnCount = thisPn.find("a").length;
       pnFirst.addClass("pnActive");
       pnPoint.click(function() {
         var pnNum = pnPoint.index(this),
-          mvWidth = chdPanel.width(),
-          wpWidth = thisWrap.width(),
-          moveLeft = mvWidth * pnNum;
+        mvWidth = chdPanel.width(),
+        wpWidth = thisWrap.width(),
+        moveLeft = mvWidth * pnNum;
         thisWrap.stop().animate(
           {
             left: -moveLeft
@@ -107,18 +107,18 @@ $(function() {
       thisPrev.click(function() {
         thisWrap.not(":animated").each(function() {
           thisPn
-            .find(".pnActive")
-            .prev()
-            .click();
+          .find(".pnActive")
+          .prev()
+          .click();
           pnAcvCheck();
         });
       });
       thisNext.click(function() {
         thisWrap.not(":animated").each(function() {
           thisPn
-            .find(".pnActive")
-            .next()
-            .click();
+          .find(".pnActive")
+          .next()
+          .click();
           pnAcvCheck();
         });
       });
@@ -151,38 +151,38 @@ $(function() {
             });
           }
           chdPanel
-            .removeClass("activePanel")
-            .eq(acvIndex)
-            .addClass("activePanel");
+          .removeClass("activePanel")
+          .eq(acvIndex)
+          .addClass("activePanel");
         });
       }
       pnAcvCheck();
       $(window)
-        .resize(function() {
-          var setWrapLeft = parseInt(thisWrap.css("left")),
-            setPanelWidth = chdPanel.width(),
-            setLeft = setWrapLeft / setPanelWidth;
-          var sdWidth = $(window).width(),
-            sdHeight = $(window).height();
-          thisSlide.css({
-            width: sdWidth,
-            height: sdHeight
-          });
-          thisWrap.css({
-            width: sdWidth * chdPanelLength,
-            height: sdHeight
-          });
-          chdPanel.css({
-            width: sdWidth,
-            height: sdHeight
-          });
-          var setWidth = chdPanel.width(),
-            adjLeft = setWidth * setLeft;
-          thisWrap.css({
-            left: adjLeft
-          });
-        })
-        .resize();
+      .resize(function() {
+        var setWrapLeft = parseInt(thisWrap.css("left")),
+        setPanelWidth = chdPanel.width(),
+        setLeft = setWrapLeft / setPanelWidth;
+        var sdWidth = $(window).width(),
+        sdHeight = $(window).height();
+        thisSlide.css({
+          width: sdWidth,
+          height: sdHeight
+        });
+        thisWrap.css({
+          width: sdWidth * chdPanelLength,
+          height: sdHeight
+        });
+        chdPanel.css({
+          width: sdWidth,
+          height: sdHeight
+        });
+        var setWidth = chdPanel.width(),
+        adjLeft = setWidth * setLeft;
+        thisWrap.css({
+          left: adjLeft
+        });
+      })
+      .resize();
       var thisInt = thisWrap.find(".slideInitial");
       thisInt.each(function() {
         var pnlInt = thisWrap.find(".slideInitial");
@@ -193,33 +193,34 @@ $(function() {
       });
       setTimeout(function() {
         thisSlide
-          .css({
-            visibility: "visible",
-            opacity: "0"
-          })
-          .animate(
-            {
-              opacity: "1"
-            },
-            slideSpeed
-          );
+        .css({
+          visibility: "visible",
+          opacity: "0"
+        })
+        .animate(
+          {
+            opacity: "1"
+          },
+          slideSpeed
+        );
       }, slideSpeed);
     });
     // MouseWheelEvent
     var mousewheelevent =
-      "onwheel" in document
-        ? "wheel"
-        : "onmousewheel" in document
-        ? "mousewheel"
-        : "DOMMouseScroll";
+    "onwheel" in document
+    ? "wheel"
+    : "onmousewheel" in document
+    ? "mousewheel"
+    : "DOMMouseScroll";
     $(document).on(mousewheelevent, function(e) {
+      act();
       if (!setWrap.is(":animated")) {
-        e.preventDefault();
+        // e.preventDefault();
         var delta = e.originalEvent.deltaY
-          ? -e.originalEvent.deltaY
-          : e.originalEvent.wheelDelta
-          ? e.originalEvent.wheelDelta
-          : -e.originalEvent.detail;
+        ? -e.originalEvent.deltaY
+        : e.originalEvent.wheelDelta
+        ? e.originalEvent.wheelDelta
+        : -e.originalEvent.detail;
         if (delta < 0) {
           motionDown();
         } else {
@@ -235,35 +236,35 @@ $(function() {
         var acvStgSwP = parseInt($("body").attr("data-page"));
         switch (e.which) {
           case 33: // Key[PgUp]
-            e.preventDefault();
-            motionUp();
-            break;
+          e.preventDefault();
+          motionUp();
+          break;
           case 34: // Key[PgDn]
-            e.preventDefault();
-            motionDown();
-            break;
+          e.preventDefault();
+          motionDown();
+          break;
           case 38: // Key[↑]
-            e.preventDefault();
-            motionUp();
-            break;
+          e.preventDefault();
+          motionUp();
+          break;
           case 40: // Key[↓]
-            e.preventDefault();
-            motionDown();
-            break;
+          e.preventDefault();
+          motionDown();
+          break;
           case 37: // Key[←]
-            e.preventDefault();
-            var dsChkP = $("#stage" + acvStgSwP + " .sdPrev").css("display");
-            if (!(dsChkP == "none")) {
-              $("#stage" + acvStgSwP + " .sdPrev").click();
-            }
-            break;
+          e.preventDefault();
+          var dsChkP = $("#stage" + acvStgSwP + " .sdPrev").css("display");
+          if (!(dsChkP == "none")) {
+            $("#stage" + acvStgSwP + " .sdPrev").click();
+          }
+          break;
           case 39: // Key[→]
-            e.preventDefault();
-            var dsChkN = $("#stage" + acvStgSwP + " .sdNext").css("display");
-            if (!(dsChkN == "none")) {
-              $("#stage" + acvStgSwP + " .sdNext").click();
-            }
-            break;
+          e.preventDefault();
+          var dsChkN = $("#stage" + acvStgSwP + " .sdNext").css("display");
+          if (!(dsChkN == "none")) {
+            $("#stage" + acvStgSwP + " .sdNext").click();
+          }
+          break;
         }
       }
     });
@@ -286,8 +287,8 @@ $(function() {
         }
         e.preventDefault();
         this.top =
-          this.top -
-          (this.pageY - (isTouch ? event.changedTouches[0].pageY : e.pageY));
+        this.top -
+        (this.pageY - (isTouch ? event.changedTouches[0].pageY : e.pageY));
         this.pageY = isTouch ? event.changedTouches[0].pageY : e.pageY;
       },
       touchend: function(e) {
@@ -305,8 +306,8 @@ $(function() {
     // ScrollUpEvent
     function motionUp() {
       var stageHeightU = setBase.height(),
-        contTopUp = parseInt(setWrap.css("top")),
-        moveTopUp = contTopUp + stageHeightU;
+      contTopUp = parseInt(setWrap.css("top")),
+      moveTopUp = contTopUp + stageHeightU;
       $("input,textarea").blur();
       if (!(contTopUp === 0)) {
         setWrap.stop().animate(
@@ -317,12 +318,12 @@ $(function() {
           scrollEasing
         );
         setNav
-          .find("li.activeStage")
-          .removeClass("activeStage")
-          .prev()
-          .addClass("activeStage");
+        .find("li.activeStage")
+        .removeClass("activeStage")
+        .prev()
+        .addClass("activeStage");
         var acvStageP = parseInt($("body").attr("data-page")),
-          setPrev = acvStageP - 1;
+        setPrev = acvStageP - 1;
         $("body").attr("data-page", setPrev);
         if (downBtn == "show") {
           pagePos();
@@ -335,11 +336,11 @@ $(function() {
     // ScrollDownEvent
     function motionDown() {
       var stageHeightD = setBase.height(),
-        contTopDown = parseInt(setWrap.css("top")),
-        moveTopDown = contTopDown - stageHeightD;
+      contTopDown = parseInt(setWrap.css("top")),
+      moveTopDown = contTopDown - stageHeightD;
       $("input,textarea").blur();
       var contHeight = setWrap.height(),
-        maxHeightAdj = -(contHeight - stageHeightD);
+      maxHeightAdj = -(contHeight - stageHeightD);
       if (!(contTopDown == maxHeightAdj)) {
         setWrap.stop().animate(
           {
@@ -349,12 +350,12 @@ $(function() {
           scrollEasing
         );
         setNav
-          .find("li.activeStage")
-          .removeClass("activeStage")
-          .next()
-          .addClass("activeStage");
+        .find("li.activeStage")
+        .removeClass("activeStage")
+        .next()
+        .addClass("activeStage");
         var acvStageN = parseInt($("body").attr("data-page")),
-          setNext = acvStageN + 1;
+        setNext = acvStageN + 1;
         $("body").attr("data-page", setNext);
         if (downBtn == "show") {
           pagePos();
@@ -368,7 +369,7 @@ $(function() {
     navList.click(function() {
       if (!setWrap.is(":animated")) {
         var crtIndex = navList.index(this),
-          crtHeight = $(window).height();
+        crtHeight = $(window).height();
         setWrap.stop().animate(
           {
             top: -(crtHeight * crtIndex)
@@ -393,11 +394,11 @@ $(function() {
         var navActive = setNav.find("li.activeStage");
         navActive.each(function() {
           var navIndex = navList.index(this),
-            setNav = navIndex + 1;
+          setNav = navIndex + 1;
           if (!(setNav == navLength)) {
             $(this)
-              .next()
-              .click();
+            .next()
+            .click();
           }
         });
         if (urlHash == "on") {
@@ -410,11 +411,11 @@ $(function() {
         var navActive = setNav.find("li.activeStage");
         navActive.each(function() {
           var navIndex = navList.index(this),
-            setNav = navIndex - 1;
+          setNav = navIndex - 1;
           if (!(setNav == navLength)) {
             $(this)
-              .prev()
-              .click();
+            .prev()
+            .click();
           }
         });
         if (urlHash == "on") {
@@ -423,11 +424,16 @@ $(function() {
       }
     });
 
+    function act(){
+      console.log($(this));
+      $(this).fadeIn();
+    }
+
     function pagePos() {
       var pnAcv = coreNav.find("li.activeStage");
       pnAcv.each(function() {
         var pnIndexN = navList.index(this),
-          pnCountN = pnIndexN + 1;
+        pnCountN = pnIndexN + 1;
         if (pnCountN == navLength) {
           $("#pageDown").css({
             display: "none"
@@ -444,7 +450,7 @@ $(function() {
       var pnAcv = coreNav.find("li.activeStage");
       pnAcv.each(function() {
         var pnIndexN = navList.index(this),
-          pnCountN = pnIndexN + 1;
+        pnCountN = pnIndexN + 1;
         location.hash = setHash + pnCountN;
       });
     }
@@ -453,16 +459,16 @@ $(function() {
     }
     // OpeningFade
     $("body")
-      .css({
-        visibility: "visible",
-        opacity: "0"
-      })
-      .animate(
-        {
-          opacity: "1"
-        },
-        1000
-      );
+    .css({
+      visibility: "visible",
+      opacity: "0"
+    })
+    .animate(
+      {
+        opacity: "1"
+      },
+      1000
+    );
     // LoadPageMove
     if (url.indexOf(setHash) !== -1) {
       var numSplit = url.split(setHash)[1] - 1;
@@ -473,7 +479,7 @@ $(function() {
   if (urlHash == "on") {
     $(window).on("hashchange", function() {
       var stateUrl = document.URL,
-        hashSplit = stateUrl.split(setHash)[1] - 1;
+      hashSplit = stateUrl.split(setHash)[1] - 1;
       navList.eq(hashSplit).click();
     });
   }

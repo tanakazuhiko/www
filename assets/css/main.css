@@ -268,6 +268,12 @@ li {
   right: 20px;
 }
 
+.mr3 {
+  position: absolute;
+  top: 200px;
+  right: 20px;
+}
+
 .mr6 {
   position: absolute;
   top: 280px;
@@ -289,35 +295,35 @@ li {
 .m1 {
   position: absolute;
   top: 156px;
-  left: 10px;
+  left: 2px;
 }
 
 .m3 {
   position: absolute;
   top: 200px;
-  left: 10px;
+  left: 2px;
 }
 
 .m6 {
   position: absolute;
   top: 280px;
-  left: 10px;
+  left: 2px;
 }
 
 .m11 {
   position: absolute;
   top: 404px;
-  left: 10px;
+  left: 2px;
 }
 
 .m12 {
   position: absolute;
   top: 528px;
-  left: 10px;
+  left: 2px;
 }
 
 .copy {
-  margin-top: 100px;
+  margin-top: 150px;
   font-size: 12rem;
   line-height: 12rem;
 }
@@ -329,6 +335,11 @@ li {
   color: dimgray;
 }
 
+.footer a {
+  color: dimgray;
+  text-decoration: none;
+}
+
 .italic {
   font-style: italic;
 }
@@ -337,7 +348,6 @@ li {
   text-align: center;
   list-style-type: none;
   position: relative;
-  /* padding: 20px 5px 0 5px; */
   padding: 20px 0px 0 0px;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -358,8 +368,109 @@ li {
 
 .tree li:nth-child(1) {
   background: linear-gradient(to top, #C1C1C1, #C1C1C1) repeat-y center/1px;
-  background-position: 284px center;
+  background-position: 269px center;
   text-align: right;
+}
+
+.stageBase p.vertical {
+  position: absolute;
+  top: 150px;
+  opacity: 0.2;
+  font-size: 8rem;
+  font-style: italic;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+}
+
+.stageBase p.vertical.left {
+  left: 302px;
+}
+
+.stageBase p.vertical.center {
+  right: 96px;
+}
+
+.stageBase p.vertical.right {
+  right: 216px;
+}
+
+.stageBase p.comment {
+  opacity: 0.8;
+  font-size: 2.2rem;
+  font-weight: bold;
+  font-style: italic;
+	font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  color: red;
+  width: 100%;
+}
+
+.stageBase p.comment.center {
+  top: 420px;
+  right: -124px;
+}
+
+.stageBase p.comment.down {
+  top: 546px;
+}
+
+.stageBase p.comment.small {
+  font-size: 1.6rem;
+}
+
+.stageBase p.comment.right {
+  top: 292px;
+  right: 74px;
+}
+
+.stageBase p.comment.right.mr1 {
+  top: 410px;
+  right: -228px;
+}
+
+.stageBase p.comment.right.mr3 {
+  top: 410px;
+  right: -228px;
+}
+
+.stageBase p.comment.right.mr6 {
+  top: 286px;
+  left: -30px;
+}
+
+.stageBase p.comment.right.fr {
+  top: 286px;
+  left: 230px;
+}
+
+.stageBase p.comment.right.mr10 {
+  top: 410px;
+  left: 228px;
+}
+
+.stageBase p.comment.right.v2 {
+  top: 410px;
+  left: 230px;
+}
+
+.stageBase p.comment.right.gulp {
+  top: 312px;
+  left: -30px;
+}
+
+.stageBase p.comment.right.up {
+  top: 180px;
+  left: -2px;
+}
+
+.stageBase p.comment.right.down {
+  top: 536px;
+  right: -228px;
+}
+
+.stageBase p.comment.right.center {
+  top: 536px;
+  right: 56px;
 }
 
 .tree li:nth-child(2) {
@@ -404,31 +515,17 @@ li {
   border-left: 1px solid #ccc;
 }
 
-
-/*We need to remove left-right connectors from elements without
-any siblings*/
-
 .tree li:only-child::after, .tree li:only-child::before {
   display: none;
 }
-
-
-/*Remove space from the top of single children*/
 
 .tree li:only-child {
   padding-top: 0;
 }
 
-
-/*Remove left connector from first child and
-right connector from last child*/
-
 .tree li:first-child::before, .tree li:last-child::after {
   border: 0 none;
 }
-
-
-/*Adding back the vertical connector to the last nodes*/
 
 .tree li:last-child::before {
   border-right: 1px solid #ccc;
@@ -442,9 +539,6 @@ right connector from last child*/
   -webkit-border-radius: 5px 0 0 0;
   -moz-border-radius: 5px 0 0 0;
 }
-
-
-/*Time to add downward connectors from parents*/
 
 .tree ul ul::before {
   content: "";
@@ -473,16 +567,6 @@ right connector from last child*/
   line-height: 1.5;
 }
 
-
-/*Time for some hover effects*/
-
-
-/*We will apply the hover effect the the lineage of the element also*/
-
-
-/* .tree li a:hover,
-.tree li a:hover + ul li a { */
-
 .frame:hover {
   background: #c8e4f8;
   color: #000;
@@ -492,9 +576,6 @@ right connector from last child*/
 a .frame:hover {
   background-color: #FFFACD;
 }
-
-
-/*Connector styles on hover*/
 
 .tree li a:hover+ul li::after, .tree li a:hover+ul li::before, .tree li a:hover+ul::before, .tree li a:hover+ul ul::before {
   border-color: #94a0b4;
@@ -512,10 +593,15 @@ a .frame:hover {
   align-items: center;
   flex-wrap: wrap;
   text-align: center;
+  opacity: 0.8;
 }
 
 .frame.top {
-  margin-left: 10px;
+  margin: 20px 0 0 10px;
+}
+
+.lh1 {
+  line-height: 1;
 }
 
 .root {
@@ -559,7 +645,6 @@ a .frame:hover {
 .contents {
   font-size: 1.8rem;
   width: 100%;
-  /* width: 300px; */
 }
 
 .contents.large {
@@ -584,9 +669,6 @@ a .frame:hover {
   display: flex;
   justify-content: space-around;
 }
-
-
-/***************************/
 
 #stage1990 {
   background: #e3f2fd;
