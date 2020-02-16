@@ -43,6 +43,14 @@ h1 {
   position: relative;
 }
 
+.stageBase p.event {
+  font-size: 1rem;
+  color: red;
+  position: absolute;
+  top: 69px;
+  left: 790px;
+}
+
 .stageSlide {
   position: relative;
   overflow: hidden;
@@ -406,7 +414,7 @@ li {
 }
 
 .stageBase p.comment.center {
-  top: 420px;
+  top: 540px;
   right: -124px;
 }
 
