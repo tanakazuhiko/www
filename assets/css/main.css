@@ -44,8 +44,8 @@ h1 {
 }
 
 .stageBase p.event {
-  font-size: 1rem;
-  color: red;
+  font-size: 1.2rem;
+  color: white;
   position: absolute;
   top: 69px;
   left: 790px;
@@ -370,7 +370,11 @@ li {
   width: 300px;
 }
 
-.tree li:nth-child(1), .tree li:nth-child(3) {
+.tree li:nth-child(1) {
+  width: calc((100% - 300px) / 2);
+}
+
+.tree li:nth-child(3) {
   width: calc((100% - 300px) / 2);
 }
 
@@ -389,6 +393,7 @@ li {
   -webkit-writing-mode: vertical-rl;
   -ms-writing-mode: tb-rl;
   writing-mode: vertical-rl;
+  color: white;
 }
 
 .stageBase p.vertical.left {
@@ -409,7 +414,7 @@ li {
   font-weight: bold;
   font-style: italic;
 	font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
-  color: red;
+  color: white;
   width: 100%;
 }
 
