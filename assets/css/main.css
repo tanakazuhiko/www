@@ -49,6 +49,11 @@ h1 {
   position: absolute;
   top: 69px;
   left: 790px;
+  font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+
+.stageBase p.event.lightgray, .stageBase p.comment.lightgray, .stageBase p.vertical.lightgray {
+  color: lightgray;
 }
 
 .stageSlide {
@@ -366,22 +371,25 @@ li {
   width: auto;
 }
 
-.tree li:nth-child(2) {
-  width: 300px;
-}
-
 .tree li:nth-child(1) {
   width: calc((100% - 300px) / 2);
+  background: linear-gradient(to top, #C1C1C1, #C1C1C1) repeat-y center/1px;
+  background-position: right 147px center;
+  text-align: right;
+}
+
+.tree li:nth-child(2) {
+  width: 300px;
 }
 
 .tree li:nth-child(3) {
   width: calc((100% - 300px) / 2);
 }
 
-.tree li:nth-child(1) {
-  background: linear-gradient(to top, #C1C1C1, #C1C1C1) repeat-y center/1px;
-  background-position: 269px center;
-  text-align: right;
+.fadeInUp {
+  opacity : 0;
+  transform: translateY(20px);
+  transition: 3s;
 }
 
 .stageBase p.vertical {
@@ -397,7 +405,7 @@ li {
 }
 
 .stageBase p.vertical.left {
-  left: 302px;
+  right: 96px;
 }
 
 .stageBase p.vertical.center {
@@ -405,12 +413,12 @@ li {
 }
 
 .stageBase p.vertical.right {
-  right: 216px;
+  left: 180px;
 }
 
 .stageBase p.comment {
   opacity: 0.8;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   font-style: italic;
 	font-family: "游明朝", "YuMincho", "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
@@ -429,6 +437,26 @@ li {
 
 .stageBase p.comment.small {
   font-size: 1.6rem;
+}
+
+.stageBase p.comment.left.mr6 {
+  top: 284px;
+  right: 0px;
+}
+
+.stageBase p.comment.left.mr10 {
+  top: 282px;
+  right: -30px;
+}
+
+.stageBase p.comment.left.mr12 {
+  top: 430px;
+  right: -30px;
+}
+
+.stageBase p.comment.left.aj {
+  top: 410px;
+  right: 90px;
 }
 
 .stageBase p.comment.right {

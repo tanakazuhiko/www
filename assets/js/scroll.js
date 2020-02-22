@@ -1,4 +1,5 @@
-$(function() {
+$(function()
+{
   var setWrap = $("#container"),
   setBase = $(".stageBase"),
   scrollSpeed = 800, //1000,
@@ -61,6 +62,7 @@ $(function() {
       });
     })
     .resize();
+
     // StageSlide
     stageSlide.each(function() {
       var thisSlide = $(this),
@@ -157,6 +159,7 @@ $(function() {
         });
       }
       pnAcvCheck();
+
       $(window)
       .resize(function() {
         var setWrapLeft = parseInt(thisWrap.css("left")),
@@ -205,6 +208,7 @@ $(function() {
         );
       }, slideSpeed);
     });
+
     // MouseWheelEvent
     var mousewheelevent =
     "onwheel" in document
@@ -214,6 +218,10 @@ $(function() {
     : "DOMMouseScroll";
     $(document).on(mousewheelevent, function(e) {
       act();
+      console.log("mousewheel");
+
+      animation();
+
       if (!setWrap.is(":animated")) {
         // e.preventDefault();
         var delta = e.originalEvent.deltaY
@@ -228,6 +236,7 @@ $(function() {
         }
       }
     });
+
     // KeyEvent
     $("html").keydown(function(e) {
       if (setWrap.is(":animated") || setWrap.find("*").is(":animated")) {
@@ -268,6 +277,7 @@ $(function() {
         }
       }
     });
+
     // FlickEvent
     var isTouch = "ontouchstart" in window;
     setWrap.on({
@@ -303,6 +313,7 @@ $(function() {
         }
       }
     });
+
     // ScrollUpEvent
     function motionUp() {
       var stageHeightU = setBase.height(),
@@ -333,6 +344,7 @@ $(function() {
         replaceHash();
       }
     }
+
     // ScrollDownEvent
     function motionDown() {
       var stageHeightD = setBase.height(),
@@ -367,6 +379,9 @@ $(function() {
     }
     // SideNaviClick
     navList.click(function() {
+      // console.log("navList");
+      animation();
+
       if (!setWrap.is(":animated")) {
         var crtIndex = navList.index(this),
         crtHeight = $(window).height();
@@ -377,6 +392,7 @@ $(function() {
           scrollSpeed,
           scrollEasing
         );
+
         setNav.find("li.activeStage").removeClass("activeStage");
         $(this).addClass("activeStage");
         $("body").attr("data-page", crtIndex + 1);
@@ -425,8 +441,9 @@ $(function() {
     });
 
     function act(){
-      console.log($(this));
+      // console.log($(this));
       $(this).fadeIn();
+      animation();
     }
 
     function pagePos() {
@@ -481,6 +498,24 @@ $(function() {
       var stateUrl = document.URL,
       hashSplit = stateUrl.split(setHash)[1] - 1;
       navList.eq(hashSplit).click();
+    });
+  }
+
+  function animation(){
+    $('.fadeInUp').each(function(){
+      // ターゲットの位置を取得
+      var target = $(this).offset().top;
+      // スクロール量を取得
+      var scroll = $(window).scrollTop();
+      // ウィンドウの高さを取得
+      var windowHeight = $(window).height();
+      // ターゲットまでスクロールするとフェードインする
+      var t = target - windowHeight;
+      // console.log(scroll+" > "+target+"-"+windowHeight);
+      if (scroll + 30 > t){
+        $(this).css('opacity','1');
+        $(this).css('transform','translateY(0)');
+      }
     });
   }
 });
