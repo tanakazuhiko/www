@@ -444,6 +444,11 @@ li {
   right: 0px;
 }
 
+.stageBase p.comment.left.tc {
+  top: 160px;
+  right: 0px;
+}
+
 .stageBase p.comment.left.mr10 {
   top: 282px;
   right: -30px;
@@ -451,6 +456,11 @@ li {
 
 .stageBase p.comment.left.mr12 {
   top: 430px;
+  right: -30px;
+}
+
+.stageBase p.comment.left.bw {
+  top: 408px;
   right: -30px;
 }
 
@@ -479,12 +489,27 @@ li {
   left: -30px;
 }
 
+.stageBase p.comment.right.vd {
+  top: 160px;
+  left: -30px;
+}
+
 .stageBase p.comment.right.fr {
   top: 286px;
   left: 230px;
 }
 
+.stageBase p.comment.right.fr2 {
+  top: 160px;
+  left: 230px;
+}
+
 .stageBase p.comment.right.mr10 {
+  top: 410px;
+  left: 228px;
+}
+
+.stageBase p.comment.right.ff3 {
   top: 410px;
   left: 228px;
 }
@@ -495,7 +520,7 @@ li {
 }
 
 .stageBase p.comment.right.gulp {
-  top: 312px;
+  top: 186px;
   left: -30px;
 }
 
@@ -512,6 +537,16 @@ li {
 .stageBase p.comment.right.center {
   top: 536px;
   right: 56px;
+}
+
+.stageBase p.comment.right.ac {
+  top: 408px;
+  right: 80px;
+}
+
+.stageBase p.comment.right.ff {
+  top: 408px;
+  right: -228px;
 }
 
 .tree li:nth-child(2) {

@@ -380,7 +380,7 @@ $(function()
     // SideNaviClick
     navList.click(function() {
       // console.log("navList");
-      // animation();
+      animation();
 
       if (!setWrap.is(":animated")) {
         var crtIndex = navList.index(this),
