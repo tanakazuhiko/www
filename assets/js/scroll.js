@@ -380,7 +380,7 @@ $(function()
     // SideNaviClick
     navList.click(function() {
       // console.log("navList");
-      animation();
+      // animation();
 
       if (!setWrap.is(":animated")) {
         var crtIndex = navList.index(this),
@@ -443,7 +443,7 @@ $(function()
     function act(){
       // console.log($(this));
       $(this).fadeIn();
-      animation();
+      // animation();
     }
 
     function pagePos() {
@@ -492,7 +492,7 @@ $(function()
       navList.eq(numSplit).click();
     }
   });
-  // HashChangeEvent
+  // HashChangeEvent2
   if (urlHash == "on") {
     $(window).on("hashchange", function() {
       var stateUrl = document.URL,
